@@ -1,0 +1,100 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Lo que somos | Inicio{% endblock %}
+{% block extralinks %}
+<link rel="stylesheet" href="{% static 'sweetalert/sweetalert2.min.css' %}">
+{% endblock %}
+{% block extrastyles %}
+<style>
+    div#login {
+        padding: 40px 25px 25px 20px;
+    }
+
+    div#loginP {
+        margin-top: 7%;
+    }
+
+    button.btn {
+        width: 100%;
+        background-color: #B29460;
+    }
+
+    button.btn:hover {
+        background-color: #C19A6B;
+    }
+
+    button.btn:focus {
+        background-color: #C19A6B;
+    }
+
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid #b3935e !important;
+        box-shadow: 0 1px 0 0 #b3935e !important;
+    }
+
+    .input-field input[type=text]:focus+label {
+        color: #b3935e !important;
+    }
+
+    .input-field input[type=password]:focus {
+        border-bottom: 1px solid #b3935e !important;
+        box-shadow: 0 1px 0 0 #b3935e !important;
+    }
+
+    .input-field input[type=password]:focus+label {
+        color: #b3935e !important;
+    }
+
+    .logo-rotation {
+        animation: rotation 10s infinite linear;
+        -webkit-animation: rotation 10s infinite linear;
+    }
+
+    @-webkit-keyframes rotation {
+        from {
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(359deg);
+            -webkit-transform: rotate(359deg);
+        }
+    }
+</style>
+{% endblock %}
+{% block nabvar %}{% endblock %}
+{% block maincontent %}
+<div class="container">
+    <div class="row">
+        <div class="col offset-l4 l4 z-depth-1" id="loginP">
+            <div id="login">
+                <div class="row">
+                    <div class="center-align">
+                        <img class="responsive-img logo-rotation" src="{% static 'images/logo2.png' %}" width="50%"
+                            alt="">
+                    </div>
+                </div>
+                <form action="" method="post" id="formLogin">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        {{flogin.username}}
+                        {{flogin.username.label_tag}}
+                    </div>
+                    <div class="input-field">
+                        {{flogin.password}}
+                        {{flogin.password.label_tag}}
+                    </div>
+                    <div class="row center-align">
+                        <button class="btn" id="accessLogin">Acceder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extrafunctions %}
+<script src="{% static 'sweetalert/sweetalert2.min.js' %}"></script>
+{% include 'base/validaciones.html' %}
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %}
+{% block maincontent %}
+<div class="cont-title">
+    <h4 class="center-align" style="margin: 0;">Categorías&nbsp;&nbsp;<i class="fas fa-tags"></i></h4>
+</div>
+<div class="container">
+    <a href="{% url 'admin:pAdmin' %}"><i class="fas fa-arrow-left fa-2x"></i></a>
+    <h6 class="center-align">Registro de una categoría</h6>
+    <div class="divider"></div>
+    <a href="#register" class="dropdown"><i class="fas fa-angle-down fa-2x right"></i></a>
+    <div class="container hide" style="width: 90%;" id="register">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-field">
+                {{fcategoria.nombre}}
+                {{fcategoria.nombre.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fcategoria.categoria}}
+                {{fcategoria.categoria.label_tag}}
+                <span class="helper-text">Elegir si necesita crear una subcategoría</span>
+            </div>
+            <div class="input-field">
+                {{fcategoria.codename}}
+                {{fcategoria.codename.label_tag}}
+            </div>
+            <div class="file-field input-field">
+                <div class="btn btn-vino">
+                    <span>{{fcategoria.logo.label}}</span>
+                    {{fcategoria.logo}}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path" type="text">
+                </div>
+            </div>
+            <div class="row center-align">
+                <button type="submit" style="width: 50%;" class="btn btn-vino">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <h6 class="center-align">Categorías registradas <b>({{total_cat}})</b></h6>
+    <div class="divider"></div>
+    <br>
+    {% for categoria in categorias %}
+    <div class="row">
+        <div class="col l4">
+            <div class="small-cont-title">
+                <h6 style="margin: 0;">Categoría</h6>
+            </div>
+            <div class="cat">
+                <img src="{{categoria.logo.url}}" alt="{{categoria.nombre}}" class="cat-img">
+            </div>
+        </div>
+        <div class="col l8">
+            <div class="small-cont-title">
+                <h6 style="margin: 0;">Subcategorías</h6>
+            </div>
+            <div class="row">
+                {% for subcategoria in categoria.cate.all %}
+                <div class="col l6">
+                    <div class="cat">
+                        <img src="{{subcategoria.logo.url}}" alt="{{subcategoria.nombre}}" class="cat-img">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block extrafunctions %}
+{{block.super}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('form select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+{% endblock %}

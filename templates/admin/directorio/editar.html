@@ -1,0 +1,82 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block maincontent %}
+<div class="cont-title">
+    <h4 class="center-align" style="margin: 0;">Directorio&nbsp;&nbsp;<i class="fas fa-list"></i></h4>
+</div>
+<div class="container">
+    <a href="{% url 'admin:pDirectorio' %}"><i class="fas fa-arrow-left fa-2x"></i></a>
+    <h6 class="center-align">Edición de una empresa</h6>
+    <div class="divider"></div>
+    <div class="container" style="width: 90%;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-field">
+                {{fdirectorio.nombre}}
+                {{fdirectorio.nombre.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.telefono}}
+                {{fdirectorio.telefono.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.municipio}}
+                {{fdirectorio.municipio.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.web_page}}
+                {{fdirectorio.web_page.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.facebook_url}}
+                {{fdirectorio.facebook_url.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.instagram_url}}
+                {{fdirectorio.instagram_url.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.categoria}}
+                {{fdirectorio.categoria.label_tag}}
+            </div>
+            <p class="center-align">
+                <label>
+                    {{fdirectorio.serv_dom}}
+                    <span>Cuenta con servicio a domicilio propio</span>
+                </label>
+            </p>
+            <div class="input-field">
+                {{fdirectorio.repartidores}}
+                {{fdirectorio.repartidores.label_tag}}
+            </div>
+            <div class="file-field input-field">
+                <div class="btn btn-vino">
+                    <span>{{fdirectorio.logo.label}}</span>
+                    <input type="file" name="logo" accept="image/*" id="id_logo">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="row center-align">
+                <button type="submit" style="width: 50%;" class="btn btn-vino">Guardar</button>
+            </div>
+            <div class="card-panel">
+                <h6>Logo actual</h6>
+                <div class="row center-align">
+                    <img src="{% get_media_prefix %}{{fdirectorio.logo.value}}" alt="" class="responsive-img">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extrafunctions %}
+{{block.super}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('form select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+{% endblock %}

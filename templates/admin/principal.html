@@ -1,0 +1,47 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block maincontent %}
+<div class="cont-title">
+    <h4 class="center-align" style="margin: 0;">Administrador&nbsp;&nbsp;<i class="fas fa-cog"></i></h4>
+</div>
+<div class="container" style="width: 90% !important;">
+    <div class="row" style="margin-top: 8%;">
+        <div class="col l4 m6 s12">
+            <a href="{% url 'admin:pCategorias' %}">
+                <div class="card-panel center-align">
+                    <i class="fas fa-tags fa-5x"></i>
+                    <br><br>
+                    <b>CATEGORÍAS</b>
+                </div>
+            </a>
+        </div>
+        <div class="col l4 m6 s12">
+            <a href="{% url 'admin:pRepartidores' %}">
+                <div class="card-panel center-align">
+                    <i class="fas fa-shipping-fast fa-5x"></i>
+                    <br><br>
+                    <b>REPARTIDORES</b>
+                </div>
+            </a>
+        </div>
+        <div class="col l4 m6 s12">
+            <a href="{% url 'admin:pDirectorio' %}">
+                <div class="card-panel center-align">
+                    <i class="fas fa-list fa-5x"></i>
+                    <br><br>
+                    <b>DIRECTORIO</b>
+                </div>
+            </a>
+        </div>
+        <div class="col l4 m6 s12">
+            <a href="{% url 'logout' %}">
+                <div class="card-panel center-align">
+                    <i class="fas fa-sign-out-alt fa-5x"></i>
+                    <br><br>
+                    <b>SALIR</b>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

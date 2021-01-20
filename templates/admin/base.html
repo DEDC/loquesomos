@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Lo que somos | Admin{% endblock %}
+{% block extralinks %}
+<link rel="stylesheet" href="{% static 'sweetalert/sweetalert2.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block extrafunctions %}
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'sweetalert/sweetalert2.min.js' %}"></script>
+{% include 'base/validaciones.html' %}
+{% endblock %}

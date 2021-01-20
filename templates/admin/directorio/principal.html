@@ -1,0 +1,144 @@
+{% extends 'admin/base.html' %}
+{% block maincontent %}
+<div class="cont-title">
+    <h4 class="center-align" style="margin: 0;">Directorio&nbsp;&nbsp;<i class="fas fa-list"></i></h4>
+</div>
+<div class="container">
+    <a href="{% url 'admin:pAdmin' %}"><i class="fas fa-arrow-left fa-2x"></i></a>
+    &nbsp;&nbsp;
+    <a href="{% url 'directorio:home' %}" target="__blank"><i class="fas fa-eye fa-2x"></i></a>
+    <h6 class="center-align">Agregar empresa al directorio</h6>
+    <div class="divider"></div>
+    <a href="#register" class="dropdown"><i class="fas fa-angle-down fa-2x right"></i></a>
+    <div class="container hide" style="width: 90%;" id="register">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-field">
+                {{fdirectorio.nombre}}
+                {{fdirectorio.nombre.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.telefono}}
+                {{fdirectorio.telefono.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.municipio}}
+                {{fdirectorio.municipio.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.web_page}}
+                {{fdirectorio.web_page.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.facebook_url}}
+                {{fdirectorio.facebook_url.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.instagram_url}}
+                {{fdirectorio.instagram_url.label_tag}}
+            </div>
+            <div class="input-field">
+                {{fdirectorio.categoria}}
+                {{fdirectorio.categoria.label_tag}}
+            </div>
+            <p class="center-align">
+                <label>
+                    {{fdirectorio.serv_dom}}
+                    <span>Cuenta con servicio a domicilio propio</span>
+                </label>
+            </p>
+            <div class="input-field">
+                {{fdirectorio.repartidores}}
+                {{fdirectorio.repartidores.label_tag}}
+            </div>
+            <div class="file-field input-field">
+                <div class="btn btn-vino">
+                    <span>{{fdirectorio.logo.label}}</span>
+                    {{fdirectorio.logo}}
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="row center-align">
+                <button type="submit" style="width: 50%;" class="btn btn-vino">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <br><br>
+    <h6 class="center-align">Empresas registradas <b>({{total_dir}})</b></h6>
+    <div class="divider"></div>
+    <br><br>
+    <form>
+        <div class="input-field" style="width: 80%; margin: 0 auto;">
+            <input type="text" name="q" id="search" style="border-bottom: 1px solid #BF965B" value="{{q}}">
+            <label for="search">Buscar empresa o servicio</label>
+        </div>
+    </form>
+    <br>
+    {% for empresa in directorio %}
+    <div class="card-panel">
+        <a href="{% url 'admin:eDirectorio' empresa.id %}" class="right"><i class="fas fa-edit fa-2x"></i></a>
+        <div class="row card-row">
+            <div class="col l4 m12 12">
+                <img src="{{empresa.logo.url}}" alt="" class="responsive-img">
+            </div>
+            <div class="col l4 m12 12">
+                <h5>{{empresa.nombre}}</h5>
+                <h6>{{empresa.get_town}}</h6>
+                <h6>{{empresa.telefono}}</h6>
+                {% if empresa.web_page %}
+                <a href="{{empresa.web_page}}" target="__blank">
+                    <i class="fas fa-globe fa-2x webpage"></i>
+                </a>
+                {% endif %}
+                {% if empresa.facebook_url %}
+                <a href="{{empresa.facebook_url}}" target="__blank">
+                    <i class="fab fa-facebook-square fa-2x"></i>
+                </a>
+                {% endif %}
+                {% if empresa.telefono %}
+                <a href="https://wa.me/52{{empresa.telefono}}" target="__blank">
+                    <i class="fab fa-whatsapp-square fa-2x"></i>
+                </a>
+                {% endif %}
+                {% if empresa.instragram_url %}
+                <a href="{{empresa.instagram_url}}" target="__blank">
+                    <i class="fab fa-instagram-square fa-2x"></i>
+                </a>
+                {% endif %}
+            </div>
+            <div class="col l4 m12 12 v-border">
+                {% if not empresa.serv_dom %}
+                {% for repartidor in empresa.repartidores.all %}
+                {% if repartidor.app_url %}
+                <a href="{{repartidor.app_url}}">
+                    <img src="{{repartidor.logo.url}}" alt="" class="logo-dealer z-depth-1">
+                </a>
+                {% elif repartidor.telefono %}
+                <a href="https://wa.me/52{{repartidor.telefono}}" target="__blank">
+                    <img src="{{repartidor.logo.url}}" alt="" class="logo-dealer z-depth">
+                </a>
+                {% endif %}
+                {% endfor %}
+
+                {% else %}
+                <h6><b>Servicio a domicilio propio</b></h6>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <h6 class="center-align">Sin resultados. Por favor, realice una búsqueda.</h6>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block extrafunctions %}
+{{block.super}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('form select');
+        var instances = M.FormSelect.init(elems);
+    });
+</script>
+{% endblock %}

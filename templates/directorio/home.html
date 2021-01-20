@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Lo que somos | Tabasco{% endblock %}
+{% block extralinks %}
+<link rel="stylesheet" href="{% static 'animate/animate.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles-home.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block maincontent %}
+<div id="preloader">
+    <img src=" {% static 'images/logo2.png' %}" alt="" id="loader" width="40px">
+</div>
+<section class="cont-logos">
+    <img src="{% static 'images/logo.png' %}" alt="Loquesomos" width="25%">
+</section>
+<section class="cont-search">
+    <div class="row">
+        <div class="col l9 m7 s12">
+            <div class="input-field">
+                <i class="material-icons prefix">search</i>
+                <input type="text" name="search" id="search" autocomplete="off">
+                <label for="search">Buscar servicio o empresa</label>
+            </div>
+        </div>
+        <div class="col l3 m5 s12">
+            <div class="input-field">
+                <i class="material-icons prefix">location_on</i>
+                {{fmunicipios.municipios}}
+                <label for="id_municipios">Municipio</label>
+            </div>
+        </div>
+    </div>
+    <button type="submit" id="btn-search" class="btn btn-green">Buscar</button>
+</section>
+<section class="cont-categories">
+    <div class="row card-row">
+        <div class="row arrow-title">
+            <i class="fas fa-arrow-left fa-2x back-categories" style="display: none;"></i>
+            <h5><b class="title-categories">O navega a través de nuestras categorías</b></h5>
+        </div>
+        {% for categoria in categorias %}
+        <div class="col l3 m6 s12" data-codename="{{categoria.codename}}" data-role="category"
+            data-name="{{categoria.nombre}}" {% if categoria.cate.count == 0 %}searcher{% endif %}>
+            <div class="cat">
+                <img src="{{categoria.logo.url}}" alt="{{categoria.nombre}}" class="cat-img z-depth-2">
+            </div>
+        </div>
+        {% for subcategoria in categoria.cate.all %}
+        <div class="col l3 m6 s12" data-codename="{{subcategoria.codename}}"
+            data-parent-codename="{{subcategoria.categoria.codename}}" data-role="subcategory"
+            data-name="{{subcategoria.nombre}}" style="display: none;" searcher>
+            <div class="cat">
+                <img src="{{subcategoria.logo.url}}" alt="{{categoria.nombre}}" class="cat-img z-depth-2">
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</section>
+<section class="cont-results">
+    <h4 style="display: none;"><b>Resultados obtenidos</b></h4>
+    <h6 style="display: none;"></h6>
+    <br>
+</section>
+<a class="scrolltotop z-depth-1" style="display: block;"><i class="material-icons">arrow_upward</i></a>
+{% endblock %}
+{% block extrafunctions %}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{% static 'js/app-home.js' %}"></script>
+{% endblock %}

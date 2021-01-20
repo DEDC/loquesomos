@@ -1,0 +1,23 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block maincontent %}
+<div class="cont-title">
+    <h4 class="center-align" style="margin: 0;">Repartidores&nbsp;&nbsp;<i class="fas fa-shipping-fast"></i></h4>
+</div>
+<div class="container">
+    <a href="{% url 'admin:pRepartidores' %}"><i class="fas fa-arrow-left fa-2x"></i></a>
+    <h6 class="center-align">Eliminar repartidor</h6>
+    <div class="divider"></div>
+    <div class="container" style="width: 90%;">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h5 class="center-align">¿Estás seguro(a) de eliminar este repartidor?</h5>
+            <br>
+            <div class="row right">
+                <button class="btn btn-vino" type="submit">Sí, eliminar</button>
+                <a class="btn btn-vino" href="{% url 'admin:pRepartidores' %}">No</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

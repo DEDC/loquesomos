@@ -1,0 +1,190 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.cont-logos {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 2%;
+    justify-content: center;
+}
+
+.cont-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.cont-search>.row {
+    width: 80%;
+}
+
+@media (max-width: 600px) {
+    .cont-logos>img {
+        width: 50%;
+    }
+}
+
+.cont-search>.btn {
+    margin-left: 5px;
+    border-radius: unset;
+}
+
+.cont-categories {
+    width: 100%;
+    padding: 5% 0 5% 0;
+    background-color: #f5f5f5;
+}
+
+.cont-categories>.row {
+    width: 80%;
+}
+
+.cont-categories>.row>.arrow-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.cat .cat-img {
+    width: 100%;
+    height: auto;
+    transition: linear .2s;
+    cursor: pointer;
+}
+
+.cat:hover .cat-img {
+    transform: scale(1.02);
+}
+
+.back-categories {
+    cursor: pointer;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #BF965B !important;
+}
+
+.input-field input[type=text] {
+    border-bottom: 1px solid #BF965B !important;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #BF965B !important;
+    box-shadow: 0 1px 0 0 #BF965B !important;
+}
+
+.input-field .prefix {
+    color: #BF965B;
+}
+
+.input-field .prefix.active {
+    color: #BF965B;
+}
+
+.btn-green {
+    background-color: #738C44 !important;
+}
+
+.cont-results {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5% 0 5% 0;
+}
+
+.fa-facebook-square {
+    color: #3b5998 !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fa-whatsapp-square {
+    color: #25d366 !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fa-instagram-square {
+    color: #bc2a8d !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.webpage {
+    color: #BF965B;
+    padding: 5px;
+}
+
+.cont-results .card-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .cont-results .card-row {
+        display: block;
+    }
+    .v-border {
+        border-top: 1px solid #e0e0e0;
+        border-left: none !important;
+    }
+    .logo-dealer {
+        margin-top: 15px !important;
+    }
+}
+
+.scrolltotop {
+    display: none;
+    position: fixed;
+    background-color: #A12C50;
+    padding: 10px;
+    color: white;
+    bottom: 40px;
+    right: 40px;
+    cursor: pointer;
+}
+
+#preloader {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+
+#loader {
+    position: absolute;
+    top: calc(50% - 1.25em);
+    left: calc(50% - 1.25em);
+    animation: beat .40s infinite alternate;
+    transform-origin: center;
+}
+
+/* Heart beat animation */
+
+@keyframes beat {
+    to {
+        transform: scale(1.4);
+    }
+}
+
+.logo-dealer {
+    width: 70px;
+    height: 40px;
+    border-radius: 3px;
+    padding: 3px;
+    margin: 5px;
+}
+
+.v-border {
+    border-left: 1px solid #e0e0e0;
+}

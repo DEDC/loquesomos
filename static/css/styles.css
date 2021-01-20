@@ -1,0 +1,103 @@
+.cont-title {
+    display: flex;
+    background-color: #642434;
+    color: white;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-cont-title {
+    display: flex;
+    background-color: #642434;
+    color: white;
+    width: auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.fas {
+    color: #9e9e9e;
+}
+
+.card-panel {
+    cursor: pointer;
+    color: #616161;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.btn-vino {
+    background-color: #642434 !important;
+}
+
+.btn-gray {
+    background-color: #9e9e9e !important;
+}
+
+.cat .cat-img {
+    width: 100%;
+    height: auto;
+    transition: ease-in-out .2s;
+    cursor: pointer;
+}
+
+.cat:hover .cat-img {
+    transform: scale(1.02);
+}
+
+.card-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .card-row {
+        display: block;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.fa-facebook-square {
+    color: #3b5998 !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fa-whatsapp-square {
+    color: #25d366 !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fa-instagram-square {
+    color: #bc2a8d !important;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.webpage {
+    color: #BF965B;
+    padding: 5px;
+}
+
+.logo-dealer {
+    width: 70px;
+    height: 40px;
+    border-radius: 3px;
+    padding: 3px;
+    margin: 5px;
+}
+
+.v-border {
+    border-left: 1px solid #e0e0e0;
+}
